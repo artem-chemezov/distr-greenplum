@@ -1,0 +1,110 @@
+version: '2'
+services:
+  master:
+        #build:
+        #  context: .
+        #  dockerfile: ./gpdb/Dockerfile
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: "master"
+    container_name: master
+    ports:
+      - "5432:5432"
+      - "5005:5005"
+      - "5010:5010"
+      - "9022:22"
+      - "40000:40000"
+      - "40001:40001"
+      - "40002:40002"
+    expose:
+      - "5432"
+    volumes:
+      - ./configs:/configs
+    tty: true
+    environment:
+      - GP_MASTER_HOSTNAME=master
+      - GP_SEGMENT_HOSTNAME_PREFIX=segment
+      - GP_NUMBER_OF_PRIMARY_SEGMENTS=1
+      - GP_NUMBER_OF_SECONDARY_SEGMENTS=0
+      - ENABLE_SSHD=true
+      - ENABLE_GPADMIN_SSH=true
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+  segment1:
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: segment1
+    container_name: segment1
+    tty: true
+    depends_on:
+      - master
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+  segment2:
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: segment2
+    container_name: segment2
+    tty: true
+    depends_on:
+      - master
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+  segment3:
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: segment3
+    container_name: segment3
+    tty: true
+    depends_on:
+      - master
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+  segment4:
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: segment4
+    container_name: segment4
+    tty: true
+    depends_on:
+      - master
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+
+  segment5:
+    image: "kochanpivotal/gpdb5oss"
+    command: bin/bash
+    hostname: segment5
+    container_name: segment5
+    tty: true
+    depends_on:
+      - master
+    networks:
+      mynetwork:
+        aliases:
+          - gpdbsne
+          - gpdbsne.localdomain.com
+
+networks:
+  mynetwork:
+    driver: bridge
