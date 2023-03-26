@@ -11,20 +11,6 @@ CREATE TABLE mytable (
   zip_code TEXT
 );
 
-CREATE TABLE addresses (
-  zip_code TEXT PRIMARY KEY,
-  city TEXT
-);
-
--- Insert test data into the table
-INSERT INTO addresses (zip_code, city) VALUES 
-('45678', 'Berlin'),
-('12345', 'Moscow'),
-('67890', 'Paris'),
-('56789', 'Amsterdam');
-
-
--- Insert test data into the table
 INSERT INTO mytable (first_name, last_name, email, phone_number, address, city, state, zip_code) VALUES 
 ('Alice', 'Johnson', 'alice@example.com', '555-1234', '123 Main St', 'Anytown', 'CA', '12345'),
 ('Bob', 'Smith', 'bob@example.com', '555-5678', '456 Oak St', 'Anytown', 'NY', '67890'),
@@ -64,3 +50,15 @@ INSERT INTO mytable (first_name, last_name, email, phone_number, address, city, 
 ('Katherine', 'Brown', 'katherine@example.com', '555-1234', '579 Main St', 'Anytown', 'TX', '23456'),
 ('Landon', 'Taylor', 'landon@example.com', '555-5678', '468 Elm St', 'Othertown', 'CA', '34567'),
 ('Mia', 'Davis', 'mia@example.com', '555-9012', '357 Pine St', 'Anytown', 'NY', '45678');
+
+
+CREATE TABLE addresses (
+  zip_code TEXT PRIMARY KEY,
+  city TEXT
+);
+
+INSERT INTO addresses (zip_code, city) VALUES 
+('45678', 'Berlin'),
+('12345', 'Moscow'),
+('67890', 'Paris'),
+('56789', 'Amsterdam');

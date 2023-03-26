@@ -1,9 +1,6 @@
 version: '2'
 services:
   master:
-        #build:
-        #  context: .
-        #  dockerfile: ./gpdb/Dockerfile
     image: "kochanpivotal/gpdb5oss"
     command: bin/bash
     hostname: "master"
@@ -22,10 +19,6 @@ services:
       - ./configs:/configs
     tty: true
     environment:
-      - GP_MASTER_HOSTNAME=master
-      - GP_SEGMENT_HOSTNAME_PREFIX=segment
-      - GP_NUMBER_OF_PRIMARY_SEGMENTS=1
-      - GP_NUMBER_OF_SECONDARY_SEGMENTS=0
       - ENABLE_SSHD=true
       - ENABLE_GPADMIN_SSH=true
     networks:
